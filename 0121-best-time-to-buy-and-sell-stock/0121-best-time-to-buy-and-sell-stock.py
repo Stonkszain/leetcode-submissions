@@ -3,12 +3,10 @@ import sys
 class Solution:
     def maxProfit(self, prices: List[int]) -> int:
 
-        lowest_price_ind = 0
+        min_price = prices[0]
         max_profit = 0
-        for i in range(len(prices)):
-            if prices[i] < prices[lowest_price_ind]:
-                lowest_price_ind = i
-            if prices[i] - prices[lowest_price_ind] > max_profit:
-                max_profit = prices[i] - prices[lowest_price_ind]
+        for price in prices[1:]:
+            max_profit = max(max_profit, price - min_price)
+            min_price = min(min_price, price)
 
         return max_profit
